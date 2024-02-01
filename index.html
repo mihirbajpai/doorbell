@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Call Demo</title>
+  </head>
+  <body>
+    <h1>Video Call Demo</h1>
+
+    <button onclick="startVideoCall()">Start Video Call</button>
+
+    <script>
+      async function startVideoCall() {
+        const offer = await createOffer();
+        sendOffer(offer);
+      }
+
+      async function createOffer() {
+        // Placeholder for WebRTC implementation to create an offer
+        return "Sample offer from website";
+      }
+
+      function sendOffer(offer) {
+        // Placeholder for sending the offer to the signaling server
+        fetch("/offer", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ offer }),
+        })
+          .then((response) => response.json())
+          .then((data) => handleAnswer(data.answer))
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function handleAnswer(answer) {
+        // Placeholder for handling the answer from the signaling server
+        alert("Received answer from server: " + answer);
+      }
+    </script>
+  </body>
+</html>
